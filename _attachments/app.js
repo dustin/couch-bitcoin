@@ -13,11 +13,27 @@ function postMessage() {
     $("#message-body").val("");
 }
 
+function updateSummary() {
+    var template = $('#currencyrow').html();
+    var target = $('#currencies');
+
+    bitcoinDb.view("app/by-currency",
+                  {group: true,
+                   success: function(data) {
+                       target.empty();
+                       data.rows.forEach(function(row) {
+                           row.value.currency = row.key;
+                           target.append($.mustache(template, row.value));
+                       });
+                   }
+                  });
+}
+
 function trackChanges() {
     var template = $("#bodyrow").html();
     var trade_target = $("#tradebody");
     var msg_target = $("#messages");
-    var maxItems = 25;
+    var maxItems = 20;
 
     bitcoinDb.info({success: function(dbi) {
         var since = Math.max(0, dbi.update_seq - (maxItems * 5));
@@ -36,6 +52,7 @@ function trackChanges() {
             });
             trade_target.find("tr:gt(" + maxItems + ")").remove();
             msg_target.find("div.message:gt(" + 10 + ")").remove();
+            updateSummary();
         });
 
     }});

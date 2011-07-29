@@ -7,19 +7,37 @@
   <body>
     <h1>Bitcoin Exchanges</h1>
 
-    <table id="trades">
-      <thead>
-        <tr>
-          <th>When</th>
-          <th>Currency</th>
-          <th>Symbol</th>
-          <th>Price</th>
-          <th>Volume</th>
-        </tr>
-      </thead>
-      <tbody id="tradebody">
-      </tbody>
-    </table>
+    <div>
+      <table id="trades">
+        <thead>
+          <tr>
+            <th>When</th>
+            <th>Currency</th>
+            <th>Symbol</th>
+            <th>Price</th>
+            <th>Volume</th>
+          </tr>
+        </thead>
+        <tbody id="tradebody">
+        </tbody>
+      </table>
+    </div>
+
+    <div>
+      <h2>Currency Summary</h2>
+      <table id="totals">
+        <thead>
+          <tr>
+            <th>Currency</th>
+            <th>Trades</th>
+            <th>Total Price</th>
+            <th>Total Volume</th>
+          </tr>
+        </thead>
+        <tbody id="currencies">
+        </tbody>
+      </table>
+    </div>
 
     <div id="messaging">
       <h1>Talk About BTC</h1>
@@ -41,6 +59,15 @@
       </div>
     </div>
   </body>
+
+  <script type="text/x-mustache" id="currencyrow">
+    <tr>
+      <td>{{currency}}</td>
+      <td class="numeric">{{count}}</td>
+      <td class="numeric">{{price}}</td>
+      <td class="numeric">{{volume}}</td>
+    </tr>
+  </script>
 
   <script type="text/x-mustache" id="bodyrow">
     <tr>
