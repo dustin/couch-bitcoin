@@ -1,0 +1,67 @@
+<html>
+  <head>
+    <title>Bitcoin Trades</title>
+    <link rel="stylesheet" href="main.css" type="text/css">
+    <link rel="stylesheet" href="jquery-ui.css" type="text/css">
+  </head>
+  <body>
+    <h1>Bitcoin Exchanges</h1>
+
+    <table id="trades">
+      <thead>
+        <tr>
+          <th>When</th>
+          <th>Currency</th>
+          <th>Symbol</th>
+          <th>Price</th>
+          <th>Volume</th>
+        </tr>
+      </thead>
+      <tbody id="tradebody">
+      </tbody>
+    </table>
+
+    <div id="messaging">
+      <h1>Talk About BTC</h1>
+      <form id="message-form" method="POST">
+        <fieldset>
+          <legend>Name</legend>
+          <input id="message-name" type="text" name="name"/>
+        </fieldset>
+
+        <fieldset>
+          <legend>Message</legend>
+          <textarea id="message-body" name="message" ></textarea>
+        </fieldset>
+
+        <input type="submit" value="Post!"/>
+      </form>
+
+      <div id="messages">
+      </div>
+    </div>
+  </body>
+
+  <script type="text/x-mustache" id="bodyrow">
+    <tr>
+      <td>{{date}}</td>
+      <td>{{currency}}</td>
+      <td>{{symbol}}</td>
+      <td class="numeric">{{price}}</td>
+      <td class="numeric">{{volume}}</td>
+    </tr>
+  </script>
+
+  <script type="text/x-mustache" id="message">
+    <div class="message">
+      <h2>{{when}} - {{from}}</h2>
+      <p><q>{{msg}}</q></p>
+    </div>
+  </script>
+  
+  <script src="/_utils/script/jquery.js"></script>
+  <script src="/_utils/script/jquery.couch.js"></script>
+  <script src="jquery.mustache.js"></script>
+  <script src="jquery-ui.min.js"></script>
+  <script src="app.js"></script>
+</html>
